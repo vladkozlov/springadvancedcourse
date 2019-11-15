@@ -11,30 +11,31 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
-
 public class PdfReportViewGenerator extends AbstractPdfView {
 
     @Override
     protected void buildPdfDocument(Map model, Document document,
                                     PdfWriter writer, HttpServletRequest request,
                                     HttpServletResponse response) throws Exception {
+        if (model.get("users") != null) {
 
-        List<User> userList = (List<User>) model.get("users");
+            List<User> userList = (List<User>) model.get("users");
 
 
-        Table table = new Table(2);
-        table.addCell("Name");
-        table.addCell("Phone numbers");
+            Table table = new Table(2);
+            table.addCell("Name");
+            table.addCell("Phone numbers");
 
-        for (User user : userList) {
+            for (User user : userList) {
 
-            table.addCell(user.getFullName());
-            table.addCell(user.getPhoneNumbers().stream()
-                    .map(phoneNumber -> phoneNumber.getNumber() + "(" + phoneNumber.getCompany() + ")")
-                    .reduce((a,b)-> a + "\n" + b)
-                    .orElse(""));
+                table.addCell(user.getFullName());
+                table.addCell(user.getPhoneNumbers().stream()
+                        .map(phoneNumber -> phoneNumber.getNumber() + "(" + phoneNumber.getCompany() + ")")
+                        .reduce((a,b)-> a + "\n" + b)
+                        .orElse(""));
+            }
+
+            document.add(table);
         }
-
-        document.add(table);
     }
 }

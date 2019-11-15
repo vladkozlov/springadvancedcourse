@@ -30,7 +30,6 @@ public class DataUploadController {
     public ResponseEntity uploadFiles(@RequestParam("file") MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
             List<User> parsedListOfUsers = fileParserService.parseFile(file);
-            System.out.println(parsedListOfUsers.toString());
             usersRepository.saveAll(parsedListOfUsers);
         }
         return ResponseEntity.ok("File uploaded successfully.");

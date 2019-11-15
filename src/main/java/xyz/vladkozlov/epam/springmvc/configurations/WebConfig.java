@@ -7,7 +7,6 @@ import org.springframework.web.servlet.config.annotation.ContentNegotiationConfi
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 @EnableWebMvc
 @Configuration
@@ -27,14 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-        FreeMarkerViewResolver viewResolver = new FreeMarkerViewResolver();
-        viewResolver.setCache(false);
-        viewResolver.setPrefix("");
-        viewResolver.setSuffix(".ftl");
-        viewResolver.setContentType("text/html; charset=utf-8");
-
-        registry.viewResolver(viewResolver);
-
+        registry.freeMarker();
         registry.enableContentNegotiation(
                 new PdfReportViewGenerator()
         );

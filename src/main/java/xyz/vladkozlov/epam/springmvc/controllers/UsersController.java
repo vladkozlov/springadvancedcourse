@@ -25,9 +25,8 @@ public class UsersController {
 
         List<User> userList = new ArrayList<>();
         usersRepository.findAll().forEach(userList::add);
-        System.out.println(userList);
         model.addObject("users", userList);
-        model.setViewName("getAllUsersPdf");
+        model.setViewName("PdfReportViewGenerator");
         return model;
     }
 
@@ -37,10 +36,8 @@ public class UsersController {
 
         List<User> userList = new ArrayList<>();
         usersRepository.findAll().forEach(userList::add);
-        System.out.println(userList);
         model.addObject("users", userList);
         model.setViewName("getAllUsers");
         return model;
-
     }
 }

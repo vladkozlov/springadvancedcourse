@@ -11,6 +11,7 @@ public class FreeMarkerConfig {
 
     @Bean
     public FreeMarkerConfigurer freemarkerConfig() {
+
         FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
         freeMarkerConfigurer.setTemplateLoaderPath("classpath:/templates/views/");
         freeMarkerConfigurer.setDefaultEncoding("UTF-8");

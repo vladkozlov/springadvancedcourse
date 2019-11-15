@@ -7,7 +7,10 @@
 <body>
 
     <h2>Unfortunately error occurred!</h2>
+    <h3>This is a custom message</h3>
+    <#if msg??>
     <p>Additional information is below:</p>
     <p>${msg}</p>
+    </#if>
 </body>
 </html>
