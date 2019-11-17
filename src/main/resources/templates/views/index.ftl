@@ -12,10 +12,5 @@
         <input type="file" name="file" id="file">
         <input type="submit" value="Upload json" name="submit">
     </form>
-
-    <h1>Download PDF</h1>
-    <a href="/userspdf">Download PDF</a>
-    <h1>Get users as a HTML</h1>
-    <a href="/users" target="_blank">Get users in new tab</a>
 </body>
 </html>

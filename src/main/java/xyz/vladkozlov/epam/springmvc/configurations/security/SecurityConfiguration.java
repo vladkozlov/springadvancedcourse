@@ -1,11 +1,9 @@
 package xyz.vladkozlov.epam.springmvc.configurations.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -37,8 +35,11 @@ public class SecurityConfiguration {
     @Configuration
     public static class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
-        @Autowired
         private CustomUserDetailService customUserDetailService;
+
+        public FormLoginWebSecurityConfigurerAdapter(CustomUserDetailService customUserDetailService) {
+            this.customUserDetailService = customUserDetailService;
+        }
 
         @Bean
         public PasswordEncoder passwordEncoder() {
@@ -48,10 +49,27 @@ public class SecurityConfiguration {
         @Override
         public void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()
+                    .antMatchers("/login*").permitAll()
                     .antMatchers("/users/**").access("hasAuthority('REGISTERED_USER') and hasAuthority('BOOKING_MANAGER')")
+                    .antMatchers("/me**").access("hasAuthority('REGISTERED_USER')")
                     .anyRequest().hasAuthority("REGISTERED_USER")
                     .and()
-                    .formLogin(Customizer.withDefaults());
+                    .formLogin()
+                        .loginPage("/login").permitAll()
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/me", true)
+                        .failureUrl("/login?error")
+                        .permitAll(true)
+                    .and()
+                        .logout()
+                        .logoutSuccessUrl("/login?logout")
+                        .deleteCookies("JSESSIONID")
+                        .permitAll()
+                    .and()
+                    .rememberMe()
+                        .rememberMeParameter("remember-me-plz")
+                        .key("secretSpringAdvancedKey")
+                        .userDetailsService(customUserDetailService);
         }
 
         @Bean
