@@ -11,6 +11,7 @@
 </form>
 
 <h2>My profile</h2>
+<a href="/me/account"><h3><b style="color: blue">My account. You can Change operator HERE</b></h3></a>
 <h4>My name: ${user.fullName}</h4>
 <h4>My roles are: ${user.roles}</h4>
 

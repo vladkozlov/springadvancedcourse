@@ -41,6 +41,10 @@ public class DataLoader implements CommandLineRunner {
         vladsPhoneNumbers.add(new PhoneNumber("Drones", "+111111111"));
 
         vlad.setPhoneNumbers(vladsPhoneNumbers);
+        vlad = usersRepository.save(vlad);
+        vlad.getUserAccount().setPhoneNumber("+133713371337");
+        vlad.getUserAccount().setCellOperator("RocketSky tech");
+        vlad.getUserAccount().setBalance(666);
         usersRepository.save(vlad);
 
         //User admin
@@ -54,6 +58,6 @@ public class DataLoader implements CommandLineRunner {
         bookingGuyNumbers.add(new PhoneNumber("Booking Agency", "+12312312313"));
 
         admin.setPhoneNumbers(bookingGuyNumbers);
-        usersRepository.save(admin);
+        admin = usersRepository.save(admin);
     }
 }
