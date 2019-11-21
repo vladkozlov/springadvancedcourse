@@ -21,7 +21,7 @@ public class PdfHttpMessageConverterImpl implements PdfHttpMessageConverter {
 
     @Override
     public boolean canWrite(@Nullable Class clazz, @Nullable MediaType mediaType) {
-        return clazz == User.class;
+        return clazz == User.class && mediaType == MediaType.APPLICATION_PDF;
     }
 
     @Override

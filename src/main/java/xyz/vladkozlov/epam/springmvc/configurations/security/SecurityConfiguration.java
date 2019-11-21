@@ -31,11 +31,9 @@ public class SecurityConfiguration {
     @Order(2)
     public static class RestApiConfigurationAdapter extends WebSecurityConfigurerAdapter {
         protected void configure(HttpSecurity http) throws Exception {
-            http.csrf().disable()
-                    .authorizeRequests()
-                    .antMatchers("/rest**").permitAll();
-//            http.antMatcher("/h2-console/**").headers().frameOptions().sameOrigin();
-//            http.csrf().ignoringAntMatchers("/h2-console/**").disable();
+            http.authorizeRequests().antMatchers("/rest/**").permitAll();
+            http.antMatcher("/rest/**").headers().frameOptions().sameOrigin();
+            http.csrf().ignoringAntMatchers("/rest/**").disable();
         }
     }
 
@@ -60,7 +58,7 @@ public class SecurityConfiguration {
 
         @Override
         public void configure(HttpSecurity http) throws Exception {
-            http.authorizeRequests()
+            http.csrf().and().authorizeRequests()
                         .antMatchers("/login*").permitAll()
                         .antMatchers("/users/**").access("hasAuthority('REGISTERED_USER') and hasAuthority('BOOKING_MANAGER')")
                         .antMatchers("/me**").access("hasAuthority('REGISTERED_USER')")

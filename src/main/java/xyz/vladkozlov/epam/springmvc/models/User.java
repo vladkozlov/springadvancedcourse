@@ -1,8 +1,7 @@
 package xyz.vladkozlov.epam.springmvc.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,7 +17,6 @@ public class User extends BaseEntity {
     @NotNull
     private String username;
 
-    @JsonIgnore
     @NotNull
     private String password;
 

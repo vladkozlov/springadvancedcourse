@@ -80,7 +80,7 @@ public class RestUsersManipulationController {
         newUser.setPassword(passwordEncoder.encode(user.getPassword()));
         newUser.setPhoneNumbers(user.getPhoneNumbers());
         newUser.setRoles(user.getRoles());
-        return usersRepository.save(user);
+        return usersRepository.save(newUser);
     }
 
 
