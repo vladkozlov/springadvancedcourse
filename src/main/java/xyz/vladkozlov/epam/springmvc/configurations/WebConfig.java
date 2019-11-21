@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.ContentNegotiationConfi
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import xyz.vladkozlov.epam.springmvc.converters.PdfHttpMessageConverter;
 import xyz.vladkozlov.epam.springmvc.converters.PdfHttpMessageConverterImpl;
 
 import java.util.List;
@@ -27,6 +26,8 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
 
+
+
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer
@@ -41,14 +42,11 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.freeMarker();
-        registry.enableContentNegotiation(
-//                new PdfHttpMessageConverterImpl()
-                new PdfReportViewGenerator()
-        );
+        registry.enableContentNegotiation(new PdfReportViewGenerator());
     }
 
     @Bean
-    PdfHttpMessageConverter userToPdfConverter() {
+    PdfHttpMessageConverterImpl userToPdfConverter() {
         return new PdfHttpMessageConverterImpl();
     }
 

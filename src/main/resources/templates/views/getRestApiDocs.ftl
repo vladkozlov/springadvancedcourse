@@ -11,12 +11,17 @@
 <b style="color: red;">Info</b>
 <p>
     Available REST API:<br>
-    <b>GET</b> <code><a href="/rest/users">/rest/users/</a></code> (Get all users)<br>
-    <b>GET</b> <code><a href="/rest/users/1">/rest/users/{userId}</a></code> (get particular user)<br>
+    <p><b>NOTE:</b> you can control Accept and Content-type. Available are application/pdf and application/json. <br> pdf by default</p><br>
+
+    <b>GET</b> <code><a href="/rest/users">/rest/users/</a></code> (Get all users PDF)<br>
+    <b>GET</b> <code><a href="/rest/users/1">/rest/users/{userId}</a></code> (get particular user PDF)<br>
+
     <b>POST</b> <code><a href="javascript:void(0);" onclick="postUser()">/rest/users/</a></code> (add user)<br>
     <p>Note: clicking on the POST link will create new user test using rest api</p>
+
     <b>PUT</b> <code><a href="javascript:void(0);" onclick="putUser()">/rest/users/</a></code> (edit user)<br>
     <p>Note: clicking on the PUT link will change name of the first user</p>
+
     <b>DELETE</b> <code><a href="javascript:void(0);" onclick="deleteUser()">/rest/users/</a></code> (delete user)<br>
     <p>Note: clicking on the DELETE link delete user with id 1 (user vlad would be unavailable)</p>
 
