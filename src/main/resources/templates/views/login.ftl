@@ -9,6 +9,7 @@
         <h3>Message:</h3>
         <p><i>${message}</i></p>
     </#if>
+    <a href="/rest/info"><h3 style="color:red">REST API DOCS SPRING ADVANCED TASK</h3></a>
     <h1>Custom login</h1>
     <p>REGISTERED_USER login: vlad password: vlad</p>
     <p>BOOKING_MANAGER Use login: admin password: admin</p>

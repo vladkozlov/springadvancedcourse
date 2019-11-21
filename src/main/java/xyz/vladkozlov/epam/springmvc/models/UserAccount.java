@@ -1,10 +1,11 @@
 package xyz.vladkozlov.epam.springmvc.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 
 @Data
@@ -13,7 +14,10 @@ import javax.persistence.OneToOne;
 @Entity
 public class UserAccount extends  BaseEntity{
 
-    @OneToOne(mappedBy = "userAccount")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "userAccount")
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @JsonIgnore
     private User user;
 
     private String phoneNumber;
